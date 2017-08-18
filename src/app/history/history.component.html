@@ -9,7 +9,7 @@
     </thead>
     <tbody>
       <tr *ngFor='let result of results'>
-        <td><a href='#'>{{ result.title }}</a></td>
+        <td><a [attr.href]="'/thread/' + result.id">{{ result.title }}</a></td>
         <td>{{ result.poster }}</td>
         <td>{{ result.time_posted }}</td>
       </tr>
