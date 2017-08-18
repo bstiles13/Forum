@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const mysql = require('mysql');
 const PORT = process.ENV || 9000;
 
 var app = express();
@@ -16,3 +17,20 @@ app.get("/", function(req, res) {
 app.listen(PORT, function() {
     console.log('App listening on port ' + PORT);
 })
+
+var connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+  
+    // Your username
+    user: "root",
+  
+    // Your password
+    password: "1234",
+    database: "forum"
+  });
+  
+  connection.connect(function(err) {
+    if (err) throw err;
+    console.log("connected as id " + connection.threadId);
+  });
