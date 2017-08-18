@@ -41,3 +41,11 @@ var connection = mysql.createConnection({
       res.json(data);
     });
 });
+
+app.get('/thread/:id', function(req, res) {
+  var id = req.params.id;
+  var query = "SELECT * FROM threads WHERE id = " + id;
+  connection.query(query, function(err, data) {
+    res.json(data);
+  });
+});
