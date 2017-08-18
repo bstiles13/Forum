@@ -34,3 +34,10 @@ var connection = mysql.createConnection({
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
   });
+
+  app.get('/threads', function(req, res) {
+    var query = "SELECT * FROM threads";
+    connection.query(query, function(err, data) {
+      res.json(data);
+    });
+});
