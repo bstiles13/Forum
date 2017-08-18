@@ -6,3 +6,8 @@
     <a href="#" class="card-link">Reply</a>
   </div>
 </div>
+<hr>
+<h4>Replies</h4>
+<ul class="list-group">
+  <li *ngFor='let reply of replies' class="list-group-item"> {{ reply.message }} <br> {{ reply.poster }} <br> {{ reply.time_posted }} </li>
+</ul>

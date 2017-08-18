@@ -11,6 +11,7 @@ export class ThreadComponent implements OnInit {
 
   id: number;
   results = [];
+  replies = [];
 
   constructor(private route: ActivatedRoute, private http: Http) {}
   
@@ -18,9 +19,12 @@ export class ThreadComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['number?'];
       console.log(this.id);
-      this.http.get('/thread/' + this. id).subscribe(data => {
+      this.http.get('/thread/' + this.id).subscribe(data => {
         this.results = JSON.parse(data['_body']);
         console.log(this.results);
+          this.http.get('reply/' + this.id).subscribe(reply => {
+            this.replies = JSON.parse(reply['_body']);
+          })        
       });
     });
   }

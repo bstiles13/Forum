@@ -44,8 +44,20 @@ var connection = mysql.createConnection({
 
 app.get('/thread/:id', function(req, res) {
   var id = req.params.id;
-  var query = "SELECT * FROM threads WHERE id = " + id;
+  var query = 'SELECT * FROM threads WHERE id = ' + id;
   connection.query(query, function(err, data) {
     res.json(data);
+  })
+})
+
+app.get('/reply/:id', function(req, res) {
+  var id = req.params.id;
+  var query = "SELECT * FROM replies WHERE thread_id = " + id;
+  connection.query(query, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+    res.json(data);
+    }
   });
 });
