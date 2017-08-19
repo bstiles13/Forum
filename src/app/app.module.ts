@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NewComponent } from './new/new.component';
 import { HistoryComponent } from './history/history.component';
 import { ThreadComponent } from './thread/thread.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ThreadComponent } from './thread/thread.component';
     NavbarComponent,
     NewComponent,
     HistoryComponent,
-    ThreadComponent
+    ThreadComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
