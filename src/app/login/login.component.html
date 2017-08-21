@@ -2,37 +2,37 @@
   <h1>Welcome! Please Sign In</h1>
   <br>
   <h3>Existing User</h3>
-  <form>
+  <!-- <form action='/existinguser' method='POST'> -->
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <input [(ngModel)]='existingUser.email' type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Password">
+      <input [(ngModel)]='existingUser.password' type="password" class="form-control" id="password" placeholder="Password">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <button (click)='loginExisting()' type="submit" class="btn btn-primary">Submit</button>
+  <!-- </form> -->
   <hr>
   <h3>New User</h3>
-  <form>
+  <!-- <form action='/newuser' method='POST'> -->
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <input [(ngModel)]='newUser.email' type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
     </div>
     <div class="form-group">
       <label for="newPassword1">Password</label>
-      <input type="password" class="form-control" id="newPassword1" placeholder="Password">
+      <input [(ngModel)]='newUser.password1' type="password" class="form-control" id="newPassword1" placeholder="Password">
     </div>
     <div class="form-group">
       <label for="newPassword2">Password</label>
-      <input type="password" class="form-control" id="newPassword2" placeholder="Re-Enter Password">
+      <input [(ngModel)]='newUser.password2' type="password" class="form-control" id="newPassword2" placeholder="Re-Enter Password">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <button (click)='loginNew()' type="submit" class="btn btn-primary">Submit</button>
+  <!-- </form> -->
   <hr>
   <h3>Guest</h3>
-  <form>
-    <button type="submit" class="btn btn-primary">Sign in as "Anonymous" user</button>
-  </form>
+  <!-- <form action='/guest' method='POST'> -->
+    <button (click)='loginGuest()' type="submit" class="btn btn-primary">Sign in as "Anonymous" user</button>
+  <!-- </form> -->
 </div>

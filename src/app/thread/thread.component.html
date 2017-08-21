@@ -11,3 +11,12 @@
 <ul class="list-group">
   <li *ngFor='let reply of replies' class="list-group-item"> {{ reply.message }} <br> {{ reply.poster }} <br> {{ reply.time_posted }} </li>
 </ul>
+<hr>
+<br>
+<form>
+  <div class="form-group">
+    <label for="threadPost">Quick Reply:</label>
+    <textarea type="text" class="form-control" id="threadPost" placeholder="Share what's on your mind"></textarea>
+  </div>
+  <button type="submit" class="btn btn-default">Reply</button>
+</form>

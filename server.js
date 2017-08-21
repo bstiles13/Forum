@@ -2,9 +2,11 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const bcrypt = require('bcrypt');
+
 const PORT = process.ENV || 9000;
 
-var app = express();
+const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -58,6 +60,50 @@ app.get('/reply/:id', function(req, res) {
       console.log(err);
     } else {
     res.json(data);
+    }
+  });
+});
+
+app.post('/existinguser', function(req, res) {
+  console.log(req.body);
+  var email = req.body.email;
+  var query = "SELECT * FROM users WHERE user_email = '" + email + "'";
+  connection.query(query, function(err, data) {
+    if (err) {
+      console.log(err);
+      res.json('Failure');
+    } else {
+      console.log(data);
+      var savedHash = data[0].user_password;
+      bcrypt.compare(req.body.password, savedHash, function(err, status) {
+        console.log(status);
+        status === true ? res.json('Success') : res.json('Unsuccessful');
+      });
+    }
+  });
+});
+
+app.post('/newuser', function(req, res) {
+  console.log(req.body);
+  var email = req.body.email;
+  var query = "SELECT * FROM users WHERE user_email = '" + email + "'";
+  connection.query(query, function(err, data) {
+    if (err) {
+      console.log(err);
+      res.json('Error');
+    } else {
+      if (data.length > 0) {
+        res.json('Unsuccessful');
+      } else {
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(req.body.password1, salt, function(err, hash) {
+              var saveUser = "INSERT INTO users ( user_email, user_password ) VALUES ( '" + email + "', '" + hash + "' )";
+              connection.query(saveUser, function(err, data) {
+                err ? console.log(err) : res.json('Success');
+              })
+            });
+        });
+      }
     }
   });
 });
