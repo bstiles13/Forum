@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 
-const PORT = process.ENV || 9000;
+const PORT = process.env.PORT || 9000;
+var connection;
 
 const app = express();
 
@@ -20,17 +21,21 @@ app.listen(PORT, function() {
     console.log('App listening on port ' + PORT);
 })
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-  
-    // Your username
-    user: "root",
-  
-    // Your password
-    password: "1234",
-    database: "forum"
-  });
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL)
+} else {
+  connection = mysql.createConnection({
+      host: "localhost",
+      port: 3306,
+    
+      // Your username
+      user: "root",
+    
+      // Your password
+      password: "1234",
+      database: "forum"
+    });
+}
   
   connection.connect(function(err) {
     if (err) throw err;
