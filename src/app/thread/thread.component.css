@@ -1,0 +1,13 @@
+#reply-container {
+    padding: 10px 30px;
+    background-color: lightgray;
+    border-radius: 2%;
+}
+
+#signature {
+    padding-left: 10px;
+}
+
+.list-group-item {
+    margin: 5px;
+}

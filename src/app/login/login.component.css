@@ -15,3 +15,8 @@ input {
 label {
     display: none;
 }
+
+#warning {
+    color: red;
+    font-weight: bold;
+}

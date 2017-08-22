@@ -90,6 +90,8 @@ app.post('/existinguser', function(req, res) {
     if (err) {
       console.log(err);
       res.json('unsuccessful');
+    } else if (data.length === 0) {
+      res.json('unsuccessful');
     } else {
       console.log(data);
       var savedHash = data[0].user_password;
