@@ -64,20 +64,38 @@ app.get('/reply/:id', function(req, res) {
   });
 });
 
+app.post('/newthread', function(req, res) {
+  var thread = req.body;
+  console.log(thread);
+  var saveThread = 'INSERT INTO threads ( title, message, poster ) VALUES ( "' + thread.title + '", "' + thread.message + '", "' + thread.user + '" )';
+  connection.query(saveThread, function(err, data) {
+    err ? console.log(err) : res.json('success');    
+  })
+})
+
+app.post('/newreply', function(req, res) {
+  var reply = req.body;
+  console.log(reply);
+  var saveReply = 'INSERT INTO replies ( thread_id, message, poster ) VALUES ( ' + reply.id + ', "' + reply.reply + '", "' + reply.user + '")';
+  connection.query(saveReply, function(err, data) {
+    err ? console.log(err) : res.json('success');        
+  });
+})
+
 app.post('/existinguser', function(req, res) {
   console.log(req.body);
-  var email = req.body.email;
-  var query = "SELECT * FROM users WHERE user_email = '" + email + "'";
+  var username = req.body.username;
+  var query = "SELECT * FROM users WHERE user_username = '" + username + "'";
   connection.query(query, function(err, data) {
     if (err) {
       console.log(err);
-      res.json('Failure');
+      res.json('unsuccessful');
     } else {
       console.log(data);
       var savedHash = data[0].user_password;
       bcrypt.compare(req.body.password, savedHash, function(err, status) {
         console.log(status);
-        status === true ? res.json('Success') : res.json('Unsuccessful');
+        status === true ? res.json('success') : res.json('unsuccessful');
       });
     }
   });
@@ -85,21 +103,21 @@ app.post('/existinguser', function(req, res) {
 
 app.post('/newuser', function(req, res) {
   console.log(req.body);
-  var email = req.body.email;
-  var query = "SELECT * FROM users WHERE user_email = '" + email + "'";
+  var username = req.body.username;
+  var query = "SELECT * FROM users WHERE user_username = '" + username + "'";
   connection.query(query, function(err, data) {
     if (err) {
       console.log(err);
       res.json('Error');
     } else {
       if (data.length > 0) {
-        res.json('Unsuccessful');
+        res.json('unsuccessful');
       } else {
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(req.body.password1, salt, function(err, hash) {
-              var saveUser = "INSERT INTO users ( user_email, user_password ) VALUES ( '" + email + "', '" + hash + "' )";
+              var saveUser = "INSERT INTO users ( user_username, user_password ) VALUES ( '" + username + "', '" + hash + "' )";
               connection.query(saveUser, function(err, data) {
-                err ? console.log(err) : res.json('Success');
+                err ? console.log(err) : res.json('success');
               })
             });
         });

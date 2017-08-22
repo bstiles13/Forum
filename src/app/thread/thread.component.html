@@ -13,10 +13,11 @@
 </ul>
 <hr>
 <br>
-<form>
+<h5 *ngIf="newReply.user === 'null'">Sign in to leave a reply</h5>
+<!-- <form> -->
   <div class="form-group">
     <label for="threadPost">Quick Reply:</label>
-    <textarea type="text" class="form-control" id="threadPost" placeholder="Share what's on your mind"></textarea>
+    <textarea [(ngModel)]="newReply.reply" [disabled]="newReply.user === 'null' ? true : null" type="text" class="form-control" id="threadPost" placeholder="Share what's on your mind"></textarea>
   </div>
-  <button type="submit" class="btn btn-default">Reply</button>
-</form>
+  <button (click)="this.submitReply()" [disabled]="newReply.user === 'null' ? true : null" type="submit" class="btn btn-default">Reply</button>
+<!-- </form> -->

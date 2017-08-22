@@ -1,11 +1,11 @@
-<div id='login-container'>
+<div *ngIf="user === null || user === 'null'" id='login-container'>
   <h1>Welcome! Please Sign In</h1>
   <br>
   <h3>Existing User</h3>
   <!-- <form action='/existinguser' method='POST'> -->
     <div class="form-group">
-      <label for="email">Email address</label>
-      <input [(ngModel)]='existingUser.email' type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <label for="username">username address</label>
+      <input [(ngModel)]='existingUser.username' type="text" class="form-control" id="username" placeholder="Enter username">
     </div>
     <div class="form-group">
       <label for="password">Password</label>
@@ -17,8 +17,8 @@
   <h3>New User</h3>
   <!-- <form action='/newuser' method='POST'> -->
     <div class="form-group">
-      <label for="email">Email address</label>
-      <input [(ngModel)]='newUser.email' type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <label for="username">username address</label>
+      <input [(ngModel)]='newUser.username' type="text" class="form-control" id="username" placeholder="Enter username">
     </div>
     <div class="form-group">
       <label for="newPassword1">Password</label>
