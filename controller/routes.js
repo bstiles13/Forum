@@ -4,11 +4,12 @@ const bcrypt = require('bcrypt');
 const path = require('path');
 const connection = require('../model/config.js');
 
-
+// Sends homepage to browser
 router.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "./dist/index.html"));
 });
 
+// Sends all existing threads to homepage for display
 router.get('/threads', function(req, res) {
     var query = "SELECT * FROM threads";
     connection.query(query, function(err, data) {
@@ -16,6 +17,7 @@ router.get('/threads', function(req, res) {
     });
 });
 
+// Sends a single thread to browser when user selects one from homepage
 router.get('/thread/:id', function(req, res) {
   var id = req.params.id;
   var query = 'SELECT * FROM threads WHERE id = ' + id;
@@ -24,6 +26,7 @@ router.get('/thread/:id', function(req, res) {
   })
 })
 
+// Sends all replies for a single thread when a thread is selected from the homepage
 router.get('/reply/:id', function(req, res) {
   var id = req.params.id;
   var query = "SELECT * FROM replies WHERE thread_id = " + id;
@@ -36,6 +39,7 @@ router.get('/reply/:id', function(req, res) {
   });
 });
 
+// Receives new thread from user and saves to database
 router.post('/newthread', function(req, res) {
   var thread = req.body;
   var saveThread = 'INSERT INTO threads ( title, message, poster ) VALUES ( "' + thread.title + '", "' + thread.message + '", "' + thread.user + '" )';
@@ -44,6 +48,7 @@ router.post('/newthread', function(req, res) {
   })
 })
 
+// Receives new reply from user and saves to database for any given thread
 router.post('/newreply', function(req, res) {
   var reply = req.body;
   var saveReply = 'INSERT INTO replies ( thread_id, message, poster ) VALUES ( ' + reply.id + ', "' + reply.reply + '", "' + reply.user + '")';
@@ -52,6 +57,7 @@ router.post('/newreply', function(req, res) {
   });
 })
 
+// Receives and authenticates login information from existing users
 router.post('/existinguser', function(req, res) {
   var username = req.body.username;
   var query = "SELECT * FROM users WHERE user_username = '" + username + "'";
@@ -71,6 +77,7 @@ router.post('/existinguser', function(req, res) {
   });
 });
 
+// Accepts login information from new users, checks if the username exists, and saves the user if unique
 router.post('/newuser', function(req, res) {
   var username = req.body.username;
   var query = "SELECT * FROM users WHERE user_username = '" + username + "'";
