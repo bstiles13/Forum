@@ -18,7 +18,6 @@ export class HistoryComponent implements OnInit {
       // Read the result field from the JSON response.
       // this.results = data['results'];
       this.results = JSON.parse(data['_body']);
-      console.log(this.results);
     });
   }
 

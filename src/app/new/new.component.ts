@@ -19,7 +19,6 @@ export class NewComponent implements OnInit {
   
   ngOnInit() {
     this.thread.user = localStorage.getItem('currentUser');
-    console.log(this.thread.user);
   }
 
   submitThread() {

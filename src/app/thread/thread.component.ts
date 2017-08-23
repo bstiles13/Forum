@@ -30,10 +30,8 @@ export class ThreadComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['number?'];
       this.newReply.id = params['number?'];
-      console.log(this.id);
       this.http.get('/thread/' + this.id).subscribe(data => {
         this.results = JSON.parse(data['_body']);
-        console.log(this.results);
           this.http.get('reply/' + this.id).subscribe(reply => {
             this.replies = JSON.parse(reply['_body']);
           })        
@@ -42,7 +40,6 @@ export class ThreadComponent implements OnInit {
   }
 
   submitReply() {
-    console.log('submitted');
     this.http.post('/newreply', this.newReply).subscribe( data => {
       this.getThread();
     });
