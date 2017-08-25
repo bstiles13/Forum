@@ -1,15 +1,23 @@
-<div class="card">
-  <div *ngFor='let result of results' class="card-block">
-    <h4 class="card-title"> Topic: {{ result.title }} </h4>
+<div *ngFor="let result of results" class="card">
+  <div class="card-header">
+    Topic: {{ result.title }}
+  </div>
+  <div class="card-block">
     <h6 class="card-subtitle mb-2 text-muted"> By {{ result.poster }} </h6>
     <hr>
     <p class="card-text"> {{ result.message }} </p>
   </div>
 </div>
-<hr>
-<h4>Conversation</h4>
+<br>
+<br>
+<h5>Conversation</h5>
 <ul class="list-group">
-  <li *ngFor='let reply of replies' class="list-group-item"> {{ reply.message }} <br> {{ reply.poster }} <br> {{ reply.time_posted }} </li>
+  <li *ngFor='let reply of replies' class="list-group-item" class='reply'>
+    <div class='reply-signature'>
+      <img class='avatar' src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png'><br> {{ reply.poster }} <br> {{ reply.time_posted }}
+    </div>
+    <div class='reply-body'>{{ reply.message }}</div>
+  </li>
 </ul>
 <hr>
 <br>
@@ -20,6 +28,6 @@
     <label for="threadPost">Quick Reply:</label>
     <textarea [(ngModel)]="newReply.reply" [disabled]="newReply.user === 'null' ? true : null" type="text" class="form-control" id="threadPost" placeholder="Share what's on your mind"></textarea>
   </div>
-  <button (click)="this.submitReply()" [disabled]="newReply.user === 'null' ? true : null" type="submit" class="btn btn-default">Reply</button><span id='signature'> as {{ newReply.user }} </span>
+  <button (click)="this.submitReply()" [disabled]="newReply.user === 'null' ? true : null" type="submit" class="btn btn-outline-danger">Reply</button><span id='signature'> as {{ newReply.user }} </span>
 </div>
 <!-- </form> -->
