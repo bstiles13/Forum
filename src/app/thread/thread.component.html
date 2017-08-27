@@ -24,13 +24,13 @@
 <br>
 <!-- <form> -->
 <div id='reply-container'>
-  <h5 *ngIf="newReply.user === 'null'">Sign in to leave a reply</h5>
+  <h5 *ngIf="!loggedIn()">Sign in to leave a reply</h5>
   <div class="form-group">
     <label for="threadPost">Quick Reply:</label>
     <textarea [(ngModel)]="newReply.reply" [disabled]="loggedIn() ? null : true" type="text" class="form-control"
       id="threadPost" placeholder="Share what's on your mind"></textarea>
   </div>
-  <button (click)="this.submitReply()" [disabled]="newReply.user === 'null' ? true : null" type="submit" class="btn btn-outline-danger">Reply</button>
+  <button (click)="this.submitReply()" [disabled]="loggedIn() ? null : true" type="submit" class="btn btn-outline-danger">Reply</button>
   <span
     *ngIf="loggedIn()" id='signature'> as {{ newReply.user }} </span>
 </div>

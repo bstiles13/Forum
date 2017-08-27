@@ -47,7 +47,7 @@ export class ThreadComponent implements OnInit {
   }
 
   loggedIn() {
-    if (this.newReply.user != '' && this.newReply.user != 'null' && this.newReply.user != null) {
+    if (this.newReply.user != '' && this.newReply.user != 'null' && this.newReply.user != null && this.newReply.user != undefined) {
       return true;
     }
   }
