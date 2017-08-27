@@ -5,6 +5,7 @@
         <th>Title</th>
         <th>Posted By</th>
         <th>Date</th>
+        <th>Replies</th>
       </tr>
     </thead>
     <tbody>
@@ -12,6 +13,7 @@
         <td><a [routerLink]="'/thread/' + result.id">{{ result.title }}</a></td>
         <td>{{ result.poster }}</td>
         <td>{{ result.time_posted }}</td>
+        <td>{{ result.count }}</td>
       </tr>
     </tbody>
 </table>

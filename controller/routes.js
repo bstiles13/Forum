@@ -11,9 +11,13 @@ router.get("/", function(req, res) {
 
 // Sends all existing threads to homepage for display
 router.get('/threads', function(req, res) {
-    var query = "SELECT * FROM threads";
+    var query = "SELECT threads.*, COUNT(replies.thread_id) AS count FROM threads LEFT JOIN replies ON threads.id = replies.thread_id GROUP BY threads.id";
     connection.query(query, function(err, data) {
-      res.json(data);
+      if (err) {
+        throw err;
+      } else {
+        res.json(data);
+      };
     });
 });
 
