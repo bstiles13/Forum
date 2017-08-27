@@ -24,6 +24,7 @@ export class ThreadComponent implements OnInit {
   ngOnInit() {
     this.newReply.user = localStorage.getItem('currentUser');
     this.getThread();
+    this.loggedIn();
   }
 
   getThread() {
@@ -43,6 +44,12 @@ export class ThreadComponent implements OnInit {
     this.http.post('/newreply', this.newReply).subscribe( data => {
       this.getThread();
     });
+  }
+
+  loggedIn() {
+    if (this.newReply.user != '' && this.newReply.user != 'null' && this.newReply.user != null) {
+      return true;
+    }
   }
 
 }
