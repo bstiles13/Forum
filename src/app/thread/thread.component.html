@@ -15,7 +15,7 @@
   <li *ngFor='let reply of replies' class="list-group-item" class='reply'>
     <div class='reply-signature'>
       <img class='avatar' src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png'><br> {{ reply.poster
-      }} <br> {{ reply.time_posted }}
+      }} <br> {{ (reply.time_posted).substring(0, 10) }}
     </div>
     <div class='reply-body'>{{ reply.message }}</div>
   </li>

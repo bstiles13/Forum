@@ -12,7 +12,7 @@
       <tr *ngFor='let result of results'>
         <td><a [routerLink]="'/thread/' + result.id">{{ result.title }}</a></td>
         <td>{{ result.poster }}</td>
-        <td>{{ result.time_posted }}</td>
+        <td>{{ (result.time_posted).substring(0, 10) }}</td>
         <td>{{ result.count }}</td>
       </tr>
     </tbody>
