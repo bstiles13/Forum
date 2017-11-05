@@ -20,7 +20,7 @@
     </div>
     <div class='reply-body'>{{ reply.message }}</div>
     <div class="reply-options">
-      <i *ngIf="reply.poster == newReply.user" (click)="stageDelete(reply.id)" class="fa fa-trash" aria-hidden="true" data-toggle="modal"
+      <i *ngIf="reply.poster == newReply.user && newReply.user != 'Anonymous'" (click)="stageDelete(reply.id)" class="fa fa-trash" aria-hidden="true" data-toggle="modal"
         data-target="#exampleModal"></i>
     </div>
   </li>

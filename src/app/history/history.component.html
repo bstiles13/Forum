@@ -14,7 +14,7 @@
         <td>{{ result.poster }}</td>
         <td>{{ (result.time_posted).substring(0, 10) }}</td>
         <td>{{ result.count }}</td>
-        <td><i *ngIf="result.poster == user" (click)="stageDelete(result.id)" class="fa fa-trash" aria-hidden="true" data-toggle="modal"
+        <td><i *ngIf="result.poster == user && user != 'Anonymous'" (click)="stageDelete(result.id)" class="fa fa-trash" aria-hidden="true" data-toggle="modal"
           data-target="#exampleModal2"></i></td>
       </tr>
     </tbody>
