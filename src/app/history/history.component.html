@@ -14,6 +14,27 @@
         <td>{{ result.poster }}</td>
         <td>{{ (result.time_posted).substring(0, 10) }}</td>
         <td>{{ result.count }}</td>
+        <td><i *ngIf="result.poster == user" (click)="stageDelete(result.id)" class="fa fa-trash" aria-hidden="true" data-toggle="modal"
+          data-target="#exampleModal2"></i></td>
       </tr>
     </tbody>
 </table>
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete your thread?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="this.deleteThread()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

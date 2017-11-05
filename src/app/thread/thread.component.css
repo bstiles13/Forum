@@ -28,12 +28,27 @@
     border-top: 1px solid lightgray;    
 }
 
+.reply-signature {
+    flex: 1
+}
+
 .reply-body {
     padding: 10px 0 0 40px;
+    flex: 6
+}
+
+.reply-options {
+    flex: 1;
+    padding: 10px 0 0 20px;
 }
 
 .avatar {
     width: 70px;
     height: auto;
+}
+
+.fa-trash {
+    color: red;
+    font-size: 20px;
 }
 

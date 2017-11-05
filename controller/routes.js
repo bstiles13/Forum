@@ -61,6 +61,30 @@ router.post('/newreply', function(req, res) {
   });
 })
 
+router.post('/deletereply', function(req, res) {
+  var id = req.body.id;
+  var query = "DELETE FROM replies WHERE id = " + id;
+  connection.query(query, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+    res.json(data);
+    }
+  });
+})
+
+router.post('/deletethread', function(req, res) {
+  var id = req.body.id;
+  var query = "DELETE FROM threads WHERE id = " + id;
+  connection.query(query, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+    res.json(data);
+    }
+  });
+})
+
 // Receives and authenticates login information from existing users
 router.post('/existinguser', function(req, res) {
   var username = req.body.username;

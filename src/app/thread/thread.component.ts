@@ -19,6 +19,8 @@ export class ThreadComponent implements OnInit {
     id: null
   }
 
+  deleteReplyId: number;
+
   constructor(private route: ActivatedRoute, private http: Http) {}
   
   ngOnInit() {
@@ -44,6 +46,18 @@ export class ThreadComponent implements OnInit {
     this.http.post('/newreply', this.newReply).subscribe( data => {
       this.getThread();
     });
+  }
+
+  stageDelete(id) {
+    console.log(id);
+    this.deleteReplyId = id;
+  }
+
+  deleteReply() {
+    console.log("clicked");
+    this.http.post('/deletereply', {id: this.deleteReplyId}).subscribe( data => {
+      this.getThread();
+    })
   }
 
   loggedIn() {
