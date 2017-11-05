@@ -10,7 +10,6 @@ import { NewComponent } from './new/new.component';
 import { HistoryComponent } from './history/history.component';
 import { ThreadComponent } from './thread/thread.component';
 import { LoginComponent } from './login/login.component';
-import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
     HistoryComponent,
     ThreadComponent,
     LoginComponent,
-    ModalDeleteComponent
   ],
   imports: [
     BrowserModule,
