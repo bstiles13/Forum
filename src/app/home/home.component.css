@@ -5,8 +5,27 @@
 
 li {
     display: flex;
+    border-bottom: 1px solid goldenrod;
+    color: white;
 }
 
-.list-child {
+li > a {
+    color: rgb(87, 167, 241);
+    font-weight: bolder;
+}
+
+.home-list-color {
+    background-color: inherit;
+}
+
+#flex-left {
     flex: 1;
+}
+
+#flex-center {
+    flex: 3;
+}
+
+#flex-right {
+    flex: 1
 }

@@ -1,0 +1,58 @@
+#navbar {
+    height: 200px;
+    position: relative;
+}
+
+#navbar-primary {
+    height: 100%;
+    display: flex;       
+}
+
+.navbar-section {
+    flex: 1;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+}
+
+#navbar-left {
+    background-image: url('http://i.imgur.com/INRZbH1.jpg');
+    box-shadow: 5px 5px 5px rgba(34,34,34,0.6);
+}
+
+#navbar-right {
+    background-image: url('https://cdn.vox-cdn.com/thumbor/Ai47iftmtkZv7grjRGr1kAV-8lQ=/cdn.vox-cdn.com/uploads/chorus_asset/file/5388165/star-wars-force-awakens-x-wing.0.jpg');
+    box-shadow: -5px 5px 5px rgba(34,34,34,0.6);    
+}
+
+#navbar-secondary {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+}
+
+#nav-links {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 8px;
+    border-radius: 10px 10px 0 0;    
+}
+
+.nav-link {
+    color: gold;
+}
+
+a:not([href]) {
+    color: gold;
+}
+
+#logo {
+    position: absolute;
+    top: 0;
+    width: 280px;
+    left: 50%;
+    margin-left: -140px;
+}

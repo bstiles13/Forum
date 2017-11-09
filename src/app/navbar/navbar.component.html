@@ -1,17 +1,16 @@
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" [routerLink]="['/']">
-    <img alt="Brand" src="http://www.bemis.com/Bemis/media/library/images/logos/logo-bemis-sm.png">
-  </a>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
+<div id="navbar">
+  <div id="navbar-primary">
+    <div id="navbar-left" class="navbar-section"></div>
+    <div id="navbar-right" class="navbar-section"></div>
+  </div>
+  <div id="navbar-secondary">
+    <div id="nav-links">
       <a class="nav-item nav-link active" [routerLink]="['/']">Home</a>
-      <a *ngIf="loggedIn" class="nav-item nav-link" [routerLink]="['/new']">New Thread</a>      
+      <a *ngIf="loggedIn" class="nav-item nav-link" [routerLink]="['/new']">New Thread</a>
       <a *ngIf="!loggedIn" class="nav-item nav-link" [routerLink]="['/login']">New Thread</a>
       <a *ngIf="loggedIn" class="nav-item nav-link" (click)="logout()">Sign Out ({{ user }})</a>
       <a *ngIf="!loggedIn" class="nav-item nav-link" [routerLink]="['/login']">Sign In</a>
     </div>
   </div>
-</nav>
+  <img id="logo" src="http://www.freepnglogos.com/uploads/star-wars-logo-3.png">
+</div>
