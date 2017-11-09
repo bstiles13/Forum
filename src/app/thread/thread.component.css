@@ -44,7 +44,12 @@
 
 .reply-body {
     padding: 10px 0 0 40px;
-    flex: 6
+    flex: 6;
+}
+
+.card-text, .reply-body {
+    white-space: pre-wrap;
+    
 }
 
 .reply-options {
