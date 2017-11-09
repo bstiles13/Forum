@@ -10,6 +10,7 @@ import { NewComponent } from './new/new.component';
 import { HistoryComponent } from './history/history.component';
 import { ThreadComponent } from './thread/thread.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { LoginComponent } from './login/login.component';
     HistoryComponent,
     ThreadComponent,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import { Http } from '@angular/http';
 
 @Component({
@@ -8,12 +9,13 @@ import { Http } from '@angular/http';
 })
 export class HistoryComponent implements OnInit {
 
+  id: number;
   user = '';
   results = [];
   deleteThreadId: number;
   
-  constructor(private http: Http) {}
-    
+  constructor(private route: ActivatedRoute, private http: Http) {}
+  
   ngOnInit(): void {
     // Make the HTTP request:
     this.user = localStorage.getItem('currentUser');    
@@ -21,10 +23,11 @@ export class HistoryComponent implements OnInit {
   }
 
   getHistory() {
-    this.http.get('/threads').subscribe(data => {
-      // Read the result field from the JSON response.
-      // this.results = data['results'];
-      this.results = JSON.parse(data['_body']);
+    this.route.params.subscribe(params => {
+      this.id = params['number?'];
+      this.http.get('/threads/' + this.id).subscribe(data => {
+        this.results = JSON.parse(data['_body']);     
+      });
     });
   }
 
