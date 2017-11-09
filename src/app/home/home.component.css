@@ -1,0 +1,12 @@
+.thread-icon {
+    height: 50px;
+    width: 60px;
+}
+
+li {
+    display: flex;
+}
+
+.list-child {
+    flex: 1;
+}

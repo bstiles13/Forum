@@ -1,3 +1,9 @@
-<ul>
-  <li *ngFor='let result of results'><a [routerLink]="'/topic/' + result.id">{{ result.topic }}</a></li>
+<ul class="list-group">
+  <li *ngFor='let result of results' class="list-group-item">
+    <div class="list-child">
+        <img src="http://www.freeiconspng.com/uploads/forum-icon-15.png" class="list-child thread-icon">  
+    </div>
+    <a [routerLink]="'/topic/' + result.id" class="list-child">{{ result.topic.toUpperCase() }}</a>
+    <div class="list-child"></div>
+  </li>
 </ul>

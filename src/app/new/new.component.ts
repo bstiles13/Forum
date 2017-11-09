@@ -11,14 +11,26 @@ export class NewComponent implements OnInit {
 
   thread = {
     user: '',
+    topic: '',
     title: '',
     message: '',
   }
+
+  topics = [];
 
   constructor(private router: Router, private http: Http) {}
   
   ngOnInit() {
     this.thread.user = localStorage.getItem('currentUser');
+    this.getTopics();
+  }
+
+  getTopics() {
+    this.http.get('/topics').subscribe(data => {
+      // Read the result field from the JSON response.
+      // this.results = data['results'];
+      this.topics = JSON.parse(data['_body']);
+    });
   }
 
   submitThread() {
