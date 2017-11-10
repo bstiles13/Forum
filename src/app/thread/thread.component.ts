@@ -32,7 +32,7 @@ export class ThreadComponent implements OnInit {
 
   getThread() {
     this.route.queryParams.subscribe(params => {
-      this.id = params.id;
+      this.id = params.topic;
       this.newReply.topicId = params.topic;      
       this.newReply.threadId = params.id;
       this.http.get('/thread/' + this.id).subscribe(data => {
