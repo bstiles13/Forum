@@ -10,6 +10,7 @@ import { Http } from '@angular/http';
 export class HistoryComponent implements OnInit {
 
   id: number;
+  topic = [];
   user = '';
   results = [];
   deleteThreadId: number;
@@ -26,19 +27,23 @@ export class HistoryComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['number?'];
       this.http.get('/threads/' + this.id).subscribe(data => {
-        console.log(JSON.parse(data['_body']));
-        this.results = JSON.parse(data['_body']);     
+        this.results = JSON.parse(data['_body']);    
+        this.getTopic(); 
       });
     });
   }
 
+  getTopic() {
+    this.http.get('/onetopic/' + this.id).subscribe(data => {
+      this.topic = JSON.parse(data['_body']);     
+    });
+  }
+
   stageDelete(id) {
-    console.log(id);
     this.deleteThreadId = id;
   }
 
   deleteThread() {
-    console.log("clicked");
     this.http.post('/deletethread', {id: this.deleteThreadId}).subscribe( data => {
       this.getHistory();
     })

@@ -51,12 +51,10 @@ export class ThreadComponent implements OnInit {
   }
 
   stageDelete(id) {
-    console.log(id);
     this.deleteReplyId = id;
   }
 
   deleteReply() {
-    console.log("clicked");
     this.http.post('/deletereply', {id: this.deleteReplyId}).subscribe( data => {
       this.getThread();
     })

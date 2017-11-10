@@ -28,7 +28,6 @@ export class NewComponent implements OnInit {
   getTopics() {
     this.http.get('/topics').subscribe(data => {
       // Read the result field from the JSON response.
-      // this.results = data['results'];
       this.topics = JSON.parse(data['_body']);
     });
   }
@@ -36,7 +35,6 @@ export class NewComponent implements OnInit {
   submitThread() {
     this.http.post('/newthread', this.thread).subscribe( data => {
       let result = JSON.parse(data['_body']);
-      console.log('result', result);
       this.router.navigate(['/thread'], { queryParams: { topic: this.thread.topic, id: result.insertId } });      
     });
   }

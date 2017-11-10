@@ -22,6 +22,18 @@ router.get('/topics', function (req, res) {
   });
 });
 
+router.get('/onetopic/:id', function (req, res) {
+  var id = req.params.id;
+  var query = "SELECT * FROM topics WHERE id = " + id;
+  connection.query(query, function (err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 // Sends all existing threads to homepage for display
 router.get('/threads/:id', function (req, res) {
   var id = req.params.id;
@@ -67,9 +79,7 @@ router.post('/newthread', function (req, res) {
 })
 
 // Receives new reply from user and saves to database for any given thread
-router.post('/newreply', function (req, res) {
-  console.log('body');
-  console.log(req.body);  
+router.post('/newreply', function (req, res) { 
   var reply = req.body;
   var saveReply = 'INSERT INTO replies ( topic_id, thread_id, message, poster ) VALUES ( ' + reply.topicId + ', ' + reply.threadId + ', "' + reply.reply + '", "' + reply.user + '" )';
   connection.query(saveReply, function (err, data) {
