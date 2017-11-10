@@ -12,7 +12,7 @@
     <a [routerLink]="'/topic/' + result.id" id="flex-center">{{ result.topic.toUpperCase() }}</a>
     <div id="flex-right" class="list-child">
       <div *ngIf="result.poster != null">
-        <a [routerLink]="['thread']" [queryParams]="{ topic: result.topic_id, id: result.id }">{{ result.message }}</a>
+        <a [routerLink]="['thread']" [queryParams]="{ topic: result.topic_id, id: result.thread_id }">{{ result.message }}</a>
         <div>by {{ result.poster }} on {{ result.time_posted.substring(0, 10) }} </div>
       </div>
       <div *ngIf="result.poster == null">
