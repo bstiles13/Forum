@@ -12,7 +12,7 @@ router.get("/", function (req, res) {
 // Sends all existing threads to homepage for display
 router.get('/topics', function (req, res) {
   // var query = "SELECT * FROM topics ORDER BY id";
-  var query = "SELECT t.*, r.thread_id, r.message, r.poster, r.time_posted FROM topics t LEFT JOIN replies r ON r.topic_id = t.id AND r.id = (SELECT MAX(r2.id) FROM replies r2 WHERE r.topic_id = r2.topic_id) ORDER BY id";
+  var query = "SELECT t.*, r.topic_id, r.thread_id, r.message, r.poster, r.time_posted FROM topics t LEFT JOIN replies r ON r.topic_id = t.id AND r.id = (SELECT MAX(r2.id) FROM replies r2 WHERE r.topic_id = r2.topic_id) ORDER BY id";
   connection.query(query, function (err, data) {
     if (err) {
       console.log(err);
