@@ -59,7 +59,7 @@ router.get('/thread/:id', function (req, res) {
 // Sends all replies for a single thread when a thread is selected from the homepage
 router.get('/reply/:id', function (req, res) {
   var id = req.params.id;
-  var query = "SELECT * FROM replies WHERE topic_id = " + id;
+  var query = "SELECT * FROM replies WHERE thread_id = " + id;
   connection.query(query, function (err, data) {
     if (err) {
       console.log(err);

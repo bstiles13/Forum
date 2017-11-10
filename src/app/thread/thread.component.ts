@@ -37,7 +37,7 @@ export class ThreadComponent implements OnInit {
       this.newReply.threadId = params.id;
       this.http.get('/thread/' + this.newReply.threadId).subscribe(data => {
         this.results = JSON.parse(data['_body']);
-          this.http.get('reply/' + this.id).subscribe(reply => {
+          this.http.get('reply/' + this.newReply.threadId).subscribe(reply => {
             this.replies = JSON.parse(reply['_body']);
           })        
       });

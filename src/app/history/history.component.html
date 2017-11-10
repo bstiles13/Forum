@@ -1,4 +1,4 @@
-<h3>{{ this.topic[0].topic }}</h3>
+<h3 *ngIf="this.topic.length > 0">{{ this.topic[0].topic }}</h3>
 <table class="table table-hover">
   <thead>
     <tr>
