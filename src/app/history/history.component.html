@@ -1,23 +1,28 @@
 <h3>General Discussion</h3>
 <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Posted By</th>
-        <th>Date</th>
-        <th>Replies</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor='let result of results'>
-        <td><a [routerLink]="'/thread/' + result.id">{{ result.title }}</a></td>
-        <td>{{ result.poster }}</td>
-        <td>{{ (result.time_posted).substring(0, 10) }}</td>
-        <td>{{ result.count }}</td>
-        <td><i *ngIf="result.poster == user && user != 'Anonymous'" (click)="stageDelete(result.id)" class="fa fa-trash" aria-hidden="true" data-toggle="modal"
-          data-target="#exampleModal2"></i></td>
-      </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Posted By</th>
+      <th>Date</th>
+      <th>Replies</th>
+      <th><i class="fa fa-pencil-square-o" aria-hidden="true"></i></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let result of results'>
+      <td>
+        <a [routerLink]="'/thread/' + result.id">{{ result.title }}</a>
+      </td>
+      <td>{{ result.poster }}</td>
+      <td>{{ (result.time_posted).substring(0, 10) }}</td>
+      <td>{{ result.count }}</td>
+      <td>
+        <i *ngIf="result.poster == user && user != 'Anonymous'" (click)="stageDelete(result.id)" class="fa fa-trash" aria-hidden="true" data-toggle="modal" data-target="#exampleModal2"></i>
+        <i *ngIf="result.poster != user || user == 'Anonymous'" class="fa fa-ban" aria-hidden="true"></i>        
+      </td>
+    </tr>
+  </tbody>
 </table>
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
