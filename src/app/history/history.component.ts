@@ -26,6 +26,7 @@ export class HistoryComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['number?'];
       this.http.get('/threads/' + this.id).subscribe(data => {
+        console.log(JSON.parse(data['_body']));
         this.results = JSON.parse(data['_body']);     
       });
     });

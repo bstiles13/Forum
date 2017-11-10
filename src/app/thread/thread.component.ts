@@ -16,7 +16,8 @@ export class ThreadComponent implements OnInit {
   newReply = {
     user: '',
     reply: '',
-    id: null
+    topicId: null,
+    threadId: null
   }
 
   deleteReplyId: number;
@@ -30,9 +31,10 @@ export class ThreadComponent implements OnInit {
   }
 
   getThread() {
-    this.route.params.subscribe(params => {
-      this.id = params['number?'];
-      this.newReply.id = params['number?'];
+    this.route.queryParams.subscribe(params => {
+      this.id = params.id;
+      this.newReply.topicId = params.topic;      
+      this.newReply.threadId = params.id;
       this.http.get('/thread/' + this.id).subscribe(data => {
         this.results = JSON.parse(data['_body']);
           this.http.get('reply/' + this.id).subscribe(reply => {

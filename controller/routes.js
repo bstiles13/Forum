@@ -11,7 +11,8 @@ router.get("/", function (req, res) {
 
 // Sends all existing threads to homepage for display
 router.get('/topics', function (req, res) {
-  var query = "SELECT * FROM topics ORDER BY id";
+  // var query = "SELECT * FROM topics ORDER BY id";
+  var query = "SELECT t.*, r.thread_id, r.message, r.poster, r.time_posted FROM topics t LEFT JOIN replies r ON r.topic_id = t.id AND r.id = (SELECT MAX(r2.id) FROM replies r2 WHERE r.topic_id = r2.topic_id) ORDER BY id";
   connection.query(query, function (err, data) {
     if (err) {
       console.log(err);
@@ -24,9 +25,7 @@ router.get('/topics', function (req, res) {
 // Sends all existing threads to homepage for display
 router.get('/threads/:id', function (req, res) {
   var id = req.params.id;
-  console.log('id', id);
-  var query = "SELECT threads.*, COUNT(replies.thread_id) AS count FROM threads LEFT JOIN replies ON threads.id = replies.thread_id WHERE topic_id = " + id + " GROUP BY threads.id";
-  // var query = "SELECT * FROM threads, replies WHERE threads.topic_id=1 AND threads.id=replies.thread_id";
+  var query = "SELECT t1.*, COUNT(t2.id) AS count FROM threads AS t1 LEFT JOIN replies AS t2 ON t2.thread_id = t1.id WHERE t1.topic_id = " + id + " GROUP BY t1.id";
   connection.query(query, function (err, data) {
     if (err) {
       throw err;
@@ -48,7 +47,7 @@ router.get('/thread/:id', function (req, res) {
 // Sends all replies for a single thread when a thread is selected from the homepage
 router.get('/reply/:id', function (req, res) {
   var id = req.params.id;
-  var query = "SELECT * FROM replies WHERE thread_id = " + id;
+  var query = "SELECT * FROM replies WHERE topic_id = " + id;
   connection.query(query, function (err, data) {
     if (err) {
       console.log(err);
@@ -61,7 +60,7 @@ router.get('/reply/:id', function (req, res) {
 // Receives new thread from user and saves to database
 router.post('/newthread', function (req, res) {
   var thread = req.body;
-  var saveThread = 'INSERT INTO threads ( topic_id, title, message, poster ) VALUES ( "' + thread.topic + '", "' + thread.title + '", "' + thread.message + '", "' + thread.user + '" )';
+  var saveThread = 'INSERT INTO threads ( topic_id, title, message, poster ) VALUES ( ' + thread.topic + ', "' + thread.title + '", "' + thread.message + '", "' + thread.user + '" )';
   connection.query(saveThread, function (err, data) {
     err ? console.log(err) : res.json(data);
   })
@@ -69,8 +68,10 @@ router.post('/newthread', function (req, res) {
 
 // Receives new reply from user and saves to database for any given thread
 router.post('/newreply', function (req, res) {
+  console.log('body');
+  console.log(req.body);  
   var reply = req.body;
-  var saveReply = 'INSERT INTO replies ( thread_id, message, poster ) VALUES ( ' + reply.id + ', "' + reply.reply + '", "' + reply.user + '")';
+  var saveReply = 'INSERT INTO replies ( topic_id, thread_id, message, poster ) VALUES ( ' + reply.topicId + ', ' + reply.threadId + ', "' + reply.reply + '", "' + reply.user + '" )';
   connection.query(saveReply, function (err, data) {
     err ? console.log(err) : res.json('success');
   });

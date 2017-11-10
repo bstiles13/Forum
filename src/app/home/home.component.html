@@ -1,10 +1,23 @@
+<div class="home-list-color">Forum</div>
 <ul class="list-group">
-  <li class="list-group-item home-list-color">Forum</li>
+  <li class="list-group-item home-list-color">
+      <div id="flex-left" class="list-child"></div>
+      <div id="flex-center">Topic</div>
+      <div id="flex-right" class="list-child">Last Post</div>
+    </li>
   <li *ngFor='let result of results' class="list-group-item home-list-color">
     <div id="flex-left" class="list-child">
-        <img src="http://www.freeiconspng.com/uploads/forum-icon-15.png" class="thread-icon">  
+      <img src="http://www.freeiconspng.com/uploads/forum-icon-15.png" class="thread-icon">
     </div>
     <a [routerLink]="'/topic/' + result.id" id="flex-center">{{ result.topic.toUpperCase() }}</a>
-    <div id="list-right" class="list-child"></div>
+    <div id="flex-right" class="list-child">
+      <div *ngIf="result.poster != null">
+        <a [routerLink]="['thread']" [queryParams]="{ topic: result.topic_id, id: result.id }">{{ result.message }}</a>
+        <div>by {{ result.poster }} on {{ result.time_posted.substring(0, 10) }} </div>
+      </div>
+      <div *ngIf="result.poster == null">
+        <div>No posts</div>
+      </div>
+    </div>
   </li>
 </ul>

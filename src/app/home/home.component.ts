@@ -10,17 +10,19 @@ export class HomeComponent implements OnInit {
 
   results = []
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
 
   ngOnInit(): void {
     // Make the HTTP request:
-    this.getHistory();
+    this.getTopics();
   }
 
-  getHistory() {
+  getTopics() {
     this.http.get('/topics').subscribe(data => {
       // Read the result field from the JSON response.
       // this.results = data['results'];
+      console.log('topics');
+      console.log(JSON.parse(data['_body']));
       this.results = JSON.parse(data['_body']);
     });
   }

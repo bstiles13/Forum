@@ -11,7 +11,7 @@ export class NewComponent implements OnInit {
 
   thread = {
     user: '',
-    topic: '',
+    topic: null,
     title: '',
     message: '',
   }
@@ -36,7 +36,8 @@ export class NewComponent implements OnInit {
   submitThread() {
     this.http.post('/newthread', this.thread).subscribe( data => {
       let result = JSON.parse(data['_body']);
-      this.router.navigate(['/thread/' + result.insertId]);
+      console.log('result', result);
+      this.router.navigate(['/thread'], { queryParams: { topic: this.thread.topic, id: result.insertId } });      
     });
   }
 

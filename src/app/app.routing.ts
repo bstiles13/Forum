@@ -10,7 +10,7 @@ const APP_ROUTES: Routes = [
     { path: '', component: HomeComponent },
     { path: 'topic/:number?', component: HistoryComponent },    
     { path: 'new', component: NewComponent },
-    { path: 'thread/:number?', component: ThreadComponent },
+    { path: 'thread', component: ThreadComponent },
     { path: 'login', component: LoginComponent }
 ];
 
