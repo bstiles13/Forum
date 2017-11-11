@@ -8,36 +8,35 @@
     <h6>Thread</h6>
 </div>
 <div id="thread">
-  <div *ngFor="let result of results" class="card">
-    <div class="card-header">
-      Topic: {{ result.title }}
-    </div>
-    <div class="card-block">
-      <h6 class="card-subtitle mb-2 text-muted"> By {{ result.poster }} </h6>
-      <hr>
-      <p class="card-text"> {{ result.message }} </p>
-    </div>
-  </div>
-  <br>
-  <br>
-  <h5 class="label">Conversation</h5>
-  <ul class="list-group">
-    <li *ngFor='let reply of replies' class="list-group-item reply">
-      <div class='reply-signature'>
-        <img class='avatar' src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png'>
-        <br> {{ reply.poster }}
-        <br> {{ (reply.time_posted).substring(0, 10) }}
+    <div *ngFor='let result of results' class="reply">
+      <div class="reply-header">Thread</div>
+      <div class="reply-container">
+        <div class='reply-signature'>
+          <img class='avatar' src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png'>
+          <br> {{ result.poster }}
+          <br> {{ result.time_posted.substring(0, 10) }}
+        </div>
+        <div class='reply-body'><span id="reply-title">{{ result.title }}</span><hr/><span>{{ result.message }}</span></div>
+        <div class="reply-options"></div>
       </div>
-      <div class='reply-body'>{{ reply.message }}</div>
-      <div class="reply-options">
-        <i *ngIf="reply.poster == newReply.user && newReply.user != 'Anonymous'" (click)="stageDelete(reply.id)" class="fa fa-trash"
-          aria-hidden="true" data-toggle="modal" data-target="#exampleModal"></i>
+    </div>
+    <div *ngFor='let reply of replies' class="reply">
+      <div class="reply-header">Reply</div>        
+      <div class="reply-container">
+        <div class='reply-signature'>
+          <img class='avatar' src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png'>
+          <br> {{ reply.poster }}
+          <br> {{ (reply.time_posted).substring(0, 10) }}
+        </div>
+        <div class='reply-body'>{{ reply.message }}</div>
+        <div class="reply-options">
+          <i *ngIf="reply.poster == newReply.user && newReply.user != 'Anonymous'" (click)="stageDelete(reply.id)" class="fa fa-trash"
+            aria-hidden="true" data-toggle="modal" data-target="#exampleModal"></i>
+        </div>
       </div>
-    </li>
-  </ul>
-  <hr>
+    </div>
   <br>
-  <div id='reply-container'>
+  <div id='new-reply-container'>
     <h5 class="warning" *ngIf="!loggedIn()">Sign in to leave a reply</h5>
     <div class="form-group">
       <label class="label" for="threadPost">Quick Reply:</label>

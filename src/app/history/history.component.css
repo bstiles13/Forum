@@ -6,6 +6,10 @@
     color: red;
 }
 
+.fa-trash:hover {
+    cursor: pointer;
+}
+
 #topic-header {
     display: flex;
     margin-bottom: 20px;

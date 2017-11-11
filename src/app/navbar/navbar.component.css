@@ -49,6 +49,15 @@ a:not([href]) {
     color: gold;
 }
 
+.nav-link:hover {
+    color: white;
+}
+
+a:not([href]):hover {
+    color: white;
+    cursor: pointer;
+}
+
 #logo {
     position: absolute;
     top: 0;
