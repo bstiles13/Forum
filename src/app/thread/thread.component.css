@@ -1,3 +1,16 @@
+#thread-header {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#thread-header > a {
+    color: gold;
+}
+
+#break {
+    margin: 0 10px;
+}
+
 #thread {
     color: black;
 }

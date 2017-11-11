@@ -1,3 +1,29 @@
 .fa-ban {
     color: gray;
 }
+
+.fa-trash {
+    color: red;
+}
+
+#topic-header {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#topic-header > a {
+    color: gold;
+}
+
+#break {
+    margin: 0 10px;
+}
+
+td {
+    color: ivory;
+}
+
+td > a {
+    color: rgb(0, 204, 219);
+    font-weight: bold;
+}

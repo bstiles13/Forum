@@ -12,6 +12,7 @@ export class ThreadComponent implements OnInit {
   id: number;
   results = [];
   replies = [];
+  topic = [];
 
   newReply = {
     user: '',
@@ -27,6 +28,7 @@ export class ThreadComponent implements OnInit {
   ngOnInit() {
     this.newReply.user = localStorage.getItem('currentUser');
     this.getThread();
+    this.getTopic();    
     this.loggedIn();
   }
 
@@ -41,6 +43,12 @@ export class ThreadComponent implements OnInit {
             this.replies = JSON.parse(reply['_body']);
           })        
       });
+    });
+  }
+
+  getTopic() {
+    this.http.get('/onetopic/' + this.id).subscribe(data => {
+      this.topic = JSON.parse(data['_body']);     
     });
   }
 

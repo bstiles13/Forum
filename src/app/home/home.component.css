@@ -1,6 +1,14 @@
+#home-header {
+    display: flex;
+}
+
+#break {
+    margin: 0 10px;
+}
+
 .thread-icon {
-    height: 50px;
-    width: 60px;
+    height: 40px;
+    width: 50px;
 }
 
 li {
@@ -9,7 +17,7 @@ li {
     color: white;
 }
 
-li > a {
+a {
     color: rgb(87, 167, 241);
     font-weight: bolder;
 }
@@ -19,13 +27,14 @@ li > a {
 }
 
 #flex-left {
-    flex: 1;
+    flex: 2;
 }
 
 #flex-center {
-    flex: 3;
+    flex: 5;
 }
 
 #flex-right {
-    flex: 1
+    width: 240px;
+    font-size: 14px;
 }

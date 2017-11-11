@@ -1,4 +1,8 @@
-<div class="home-list-color">Forum</div>
+<div id="home-header">
+    <h6>Star Wars Fan Community</h6>
+    <h6 id="break">/</h6>
+    <h6>Forum</h6>
+</div>
 <ul class="list-group">
   <li class="list-group-item home-list-color">
       <div id="flex-left" class="list-child"></div>
@@ -7,12 +11,14 @@
     </li>
   <li *ngFor='let result of results' class="list-group-item home-list-color">
     <div id="flex-left" class="list-child">
-      <img src="http://www.freeiconspng.com/uploads/forum-icon-15.png" class="thread-icon">
+      <img src="/assets/images/thread-icon.png" class="thread-icon">
     </div>
-    <a [routerLink]="'/topic/' + result.id" id="flex-center">{{ result.topic.toUpperCase() }}</a>
+    <div id="flex-center">
+        <a [routerLink]="'/topic/' + result.id">{{ result.topic.toUpperCase() }}</a>        
+    </div>
     <div id="flex-right" class="list-child">
       <div *ngIf="result.poster != null">
-        <a [routerLink]="['thread']" [queryParams]="{ topic: result.topic_id, id: result.thread_id }">{{ result.message }}</a>
+        <a [routerLink]="['thread']" [queryParams]="{ topic: result.topic_id, id: result.thread_id }">{{ result.message.substring(0, 20) + "..." }}</a>
         <div>by {{ result.poster }} on {{ result.time_posted.substring(0, 10) }} </div>
       </div>
       <div *ngIf="result.poster == null">

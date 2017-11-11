@@ -16,12 +16,12 @@
 }
 
 #navbar-left {
-    background-image: url('http://i.imgur.com/INRZbH1.jpg');
+    background-image: url('/assets/images/navbar-left.jpg');
     box-shadow: 5px 5px 5px rgba(34,34,34,0.6);
 }
 
 #navbar-right {
-    background-image: url('https://cdn.vox-cdn.com/thumbor/Ai47iftmtkZv7grjRGr1kAV-8lQ=/cdn.vox-cdn.com/uploads/chorus_asset/file/5388165/star-wars-force-awakens-x-wing.0.jpg');
+    background-image: url('/assets/images/navbar-right.jpg');
     box-shadow: -5px 5px 5px rgba(34,34,34,0.6);    
 }
 

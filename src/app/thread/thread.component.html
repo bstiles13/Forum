@@ -1,3 +1,12 @@
+<div id="thread-header">
+    <a [routerLink]="['/']"><h6>Star Wars Fan Community</h6></a>
+    <h6 id="break">/</h6>    
+    <a [routerLink]="['/']"><h6>Forum</h6></a>
+    <h6 id="break">/</h6>
+    <a *ngIf="this.topic.length > 0" [routerLink]="'/topic/' + this.topic[0].id"><h6>{{ this.topic[0].topic }}</h6></a>
+    <h6 id="break">/</h6>
+    <h6>Thread</h6>
+</div>
 <div id="thread">
   <div *ngFor="let result of results" class="card">
     <div class="card-header">
