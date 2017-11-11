@@ -1,5 +1,6 @@
 #thread-header {
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 20px;
 }
 
@@ -47,20 +48,22 @@
 
 .reply-container {
     display: flex;
+    flex-wrap: wrap;
     border-top: 1px solid lightgray;    
     background-color: rgba(255, 255, 255, 0.9);
     width: 100%;
-    padding: 10px;    
+    padding: 10px 20px;    
 }
 
 .reply-signature {
     flex: 1;
     border-right: 1px solid dimgray;
+    padding-right: 10px;
 }
 
 .reply-body {
-    padding: 10px 0 20px 40px;
-    flex: 6;
+    padding: 10px 0 20px 20px;
+    flex: 7;
 }
 
 #reply-title {
