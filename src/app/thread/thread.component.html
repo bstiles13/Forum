@@ -44,7 +44,7 @@
       <textarea [(ngModel)]="newReply.reply" [disabled]="loggedIn() ? null : true" type="text" class="form-control" id="threadPost"
         placeholder="Share what's on your mind"></textarea>
     </div>
-    <button (click)="this.submitReply()" [disabled]="loggedIn() ? null : true" type="submit" class="btn btn-outline-danger">Reply</button>
+    <button (click)="this.submitQuickReply()" [disabled]="loggedIn() ? null : true" type="submit" class="btn btn-outline-danger">Reply</button>
     <span *ngIf="loggedIn()" id='signature'> as {{ newReply.user }} </span>
   </div>
   <!-- <app-modal-delete [id]="deleteReplyId"></app-modal-delete> -->
