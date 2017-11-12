@@ -83,11 +83,11 @@ router.post('/newreply', function (req, res) {
   var reply = req.body;
   let message = '';
   if (req.body.quotedUser != '') {
-    message = "<div class='quote'><div class='quote-poster'>Posted by " + reply.quotedUser + "</div><div class='quote-body'>" + reply.quotedPost + "</div></div><br/>" + reply.reply;
+    message = '<div class="quote"><div class="quote-poster">Posted by ' + reply.quotedUser + '</div><div class="quote-body">' + reply.quotedPost + '</div></div><br/>' + reply.reply;
   } else {
     message = reply.reply;
   }
-  var saveReply = 'INSERT INTO replies ( topic_id, thread_id, message, poster ) VALUES ( ' + reply.topicId + ', ' + reply.threadId + ', "' + message + '", "' + reply.user + '" )';
+  var saveReply = "INSERT INTO replies ( topic_id, thread_id, message, poster ) VALUES ( " + reply.topicId + ", " + reply.threadId + ", '" + message + "', '" + reply.user + "' )";
   connection.query(saveReply, function (err, data) {
     err ? console.log(err) : res.json('success');
   });

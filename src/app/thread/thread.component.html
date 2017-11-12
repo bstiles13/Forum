@@ -16,9 +16,9 @@
           <br> {{ result.poster }}
           <br> {{ result.time_posted.substring(0, 10) }}
         </div>
-        <div class='reply-body'><span id="reply-title">{{ result.title }}</span><hr/><span [innerHTML]="result.message"></span></div>
+        <div class='reply-body'><span id="reply-title">{{ result.title }}</span><hr/><span [innerHTML]="result.message | sanitizeHtml"></span></div>
         <div class="reply-options">
-          <button *ngIf="this.loggedIn()" type="button" class="btn btn-outline-dark option-button" data-toggle="modal" data-target="#exampleModal3" (click)="setQuote(result.poster, result.message)">QUOTE</button>     
+          <i class="fa fa-reply option-icon" aria-hidden="true" *ngIf="this.loggedIn()" data-toggle="modal" data-target="#exampleModal3" (click)="setQuote(result.poster, result.message)"></i>            
         </div>
     </div>
     <div *ngFor='let reply of replies' class="reply">
@@ -29,10 +29,10 @@
           <br> {{ reply.poster }}
           <br> {{ (reply.time_posted).substring(0, 10) }}
         </div>
-        <div class='reply-body' [innerHTML]="reply.message"></div>
+        <div class='reply-body' [innerHTML]="reply.message | sanitizeHtml"></div>
         <div class="reply-options">
-          <button *ngIf="this.loggedIn()" type="button" class="btn btn-outline-dark option-button" data-toggle="modal" data-target="#exampleModal3" (click)="setQuote(reply.poster, reply.message)">QUOTE</button>     
-          <button *ngIf="reply.poster == newReply.user && newReply.user != 'Anonymous'" type="button" class="btn btn-outline-danger option-button" data-toggle="modal" data-target="#exampleModal"(click)="stageDelete(reply.id)">DELETE</button>                   
+          <i class="fa fa-reply option-icon" aria-hidden="true" *ngIf="this.loggedIn()" data-toggle="modal" data-target="#exampleModal3" (click)="setQuote(reply.poster, reply.message)"></i>            
+          <i class="fa fa-trash option-icon" aria-hidden="true" *ngIf="reply.poster == newReply.user && newReply.user != 'Anonymous'" data-toggle="modal" data-target="#exampleModal"(click)="stageDelete(reply.id)"></i>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
         <h6>Quote</h6>
         <div class="quote">
           <div class="quote-poster">Posted by {{ this.newReply.quotedUser }}</div>
-          <div class="quote-body">{{ this.newReply.quotedPost }}</div>
+          <div class="quote-body" [innerHTML]="this.newReply.quotedPost"></div>
         </div>
         <textarea [(ngModel)]="newReply.reply" type="text" class="form-control"></textarea>
       </div>

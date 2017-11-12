@@ -112,6 +112,8 @@
     overflow: auto;
 }
 
-.option-button {
-    margin-bottom: 5px;
+.option-icon {
+    margin: 5px;
+    cursor: pointer;
+    font-size: 30px;
 }

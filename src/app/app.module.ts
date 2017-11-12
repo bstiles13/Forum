@@ -11,6 +11,7 @@ import { HistoryComponent } from './history/history.component';
 import { ThreadComponent } from './thread/thread.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { SanitizeHtmlPipe } from './app.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HomeComponent } from './home/home.component';
     ThreadComponent,
     LoginComponent,
     HomeComponent,
+    SanitizeHtmlPipe
   ],
   imports: [
     BrowserModule,
