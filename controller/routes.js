@@ -72,8 +72,12 @@ router.get('/reply/:id', function (req, res) {
 // Receives new thread from user and saves to database
 router.post('/newthread', function (req, res) {
   var thread = req.body;
-  var saveThread = "INSERT INTO threads ( topic_id, title, message, poster ) VALUES ( " + thread.topic + ", '" + thread.title + "', '" + thread.message + "', '" + thread.user + "' )";
-  connection.query(saveThread, function (err, data) {
+  connection.query("INSERT INTO threads SET ?", {
+    topic_id: thread.topic,
+    title: thread.title,
+    message: thread.message,
+    poster: thread.user
+  }, function (err, data) {
     err ? console.log(err) : res.json(data);
   })
 })
@@ -87,8 +91,12 @@ router.post('/newreply', function (req, res) {
   } else {
     message = reply.reply;
   }
-  var saveReply = "INSERT INTO replies ( topic_id, thread_id, message, poster ) VALUES ( " + reply.topicId + ", " + reply.threadId + ", '" + message + "', '" + reply.user + "' )";
-  connection.query(saveReply, function (err, data) {
+  connection.query("INSERT INTO replies SET ?", {
+    topic_id: reply.topicId,
+    thread_id: reply.threadId,
+    message: message,
+    poster: reply.user
+  }, function (err, data) {
     err ? console.log(err) : res.json('success');
   });
 })
