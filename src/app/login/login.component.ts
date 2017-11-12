@@ -37,6 +37,11 @@ export class LoginComponent implements OnInit {
     warning: "Passwords do not match."
   }
 
+  invalidInput = {
+    toggle: false,
+    warning: "One or more field are incomplete. Please try again."
+  }
+
   constructor(private http: Http, private router: Router) { }
 
   ngOnInit() {
@@ -44,37 +49,43 @@ export class LoginComponent implements OnInit {
     if (local != null) {
       this.user = local;
     }
-    
+
   }
 
   loginExisting() {
     this.clearWarnings();
-    // Make the HTTP request:
-    this.http.post('/existinguser', this.existingUser).subscribe(data => {
-    // Read the result field from the JSON response.
-    let result = JSON.parse(data['_body']);
-    if (result === 'success') {
-      this.loggedIn(this.existingUser.username);
+    if (this.existingUser.username == '' || this.existingUser.password == '') {
+      this.invalidInput.toggle = true;
     } else {
-      this.invalidUser.toggle = true;
+      // Make the HTTP request:
+      this.http.post('/existinguser', this.existingUser).subscribe(data => {
+        // Read the result field from the JSON response.
+        let result = JSON.parse(data['_body']);
+        if (result) {
+          this.loggedIn(this.existingUser.username);
+        } else {
+          this.invalidUser.toggle = true;
+        }
+      });
     }
-  });
   }
 
   loginNew() {
     this.clearWarnings();
     if (this.newUser.password1 != this.newUser.password2) {
       this.invalidPassword.toggle = true;
+    } else if (this.newUser.password1 == '') {
+      this.invalidInput.toggle = true;
     } else {
       // Make the HTTP request:
       this.http.post('/newuser', this.newUser).subscribe(data => {
-      // Read the result field from the JSON response.
-      let result = JSON.parse(data['_body']);
-      if (result === 'success') {
-        this.loggedIn(this.newUser.username);
-      } else {
-        this.invalidName.toggle = true;
-      }
+        // Read the result field from the JSON response.
+        let result = JSON.parse(data['_body']);
+        if (result) {
+          this.loggedIn(this.newUser.username);
+        } else {
+          this.invalidName.toggle = true;
+        }
       });
     };
   }
@@ -86,7 +97,6 @@ export class LoginComponent implements OnInit {
       username: '',
       password: '',
     };
-
     this.newUser = {
       username: '',
       password1: '',
@@ -103,6 +113,7 @@ export class LoginComponent implements OnInit {
     this.invalidUser.toggle = false;
     this.invalidName.toggle = false;
     this.invalidPassword.toggle = false;
+    this.invalidInput.toggle = false;
   }
 
 }

@@ -124,14 +124,14 @@ router.post('/existinguser', function (req, res) {
   connection.query(query, function (err, data) {
     if (err) {
       console.log(err);
-      res.json('unsuccessful');
+      res.json(false);
     } else if (data.length === 0) {
-      res.json('unsuccessful');
+      res.json(false);
     } else {
       var savedHash = data[0].user_password;
       bcrypt.compare(req.body.password, savedHash, function (err, status) {
         console.log(status);
-        status === true ? res.json('success') : res.json('unsuccessful');
+        status === true ? res.json(true) : res.json(false);
       });
     }
   });
@@ -144,16 +144,16 @@ router.post('/newuser', function (req, res) {
   connection.query(query, function (err, data) {
     if (err) {
       console.log(err);
-      res.json('Error');
+      res.json(false);
     } else {
       if (data.length > 0) {
-        res.json('unsuccessful');
+        res.json(false);
       } else {
         bcrypt.genSalt(10, function (err, salt) {
           bcrypt.hash(req.body.password1, salt, function (err, hash) {
             var saveUser = "INSERT INTO users ( user_username, user_password ) VALUES ( '" + username + "', '" + hash + "' )";
             connection.query(saveUser, function (err, data) {
-              err ? console.log(err) : res.json('success');
+              err ? console.log(err) : res.json(true);
             })
           });
         });

@@ -1,41 +1,43 @@
-<div *ngIf="user === null || user === 'null'" id='login-container'>
-  <h1>Welcome! Please Sign In</h1>
+<div id='login-container'>
+  <h1>Welcome!</h1>
+  <h5 class="custom-color">Sign In Options</h5>
   <br>
-  <h3>Existing User</h3>
-  <!-- <form action='/existinguser' method='POST'> -->
-    <div *ngIf="invalidUser.toggle" id='warning'> {{ invalidUser.warning }} </div>    
-    <div class="form-group">
-      <label for="username">username address</label>
-      <input [(ngModel)]='existingUser.username' type="text" class="form-control" id="username" placeholder="Enter username">
+  <div *ngIf="invalidUser.toggle" class='warning'> {{ invalidUser.warning }} </div>
+  <div *ngIf="invalidInput.toggle" class='warning'> {{ invalidInput.warning }} </div>
+  <div *ngIf="invalidName.toggle" class='warning'> {{ invalidName.warning }} </div>
+  <div *ngIf="invalidPassword.toggle" class='warning'> {{ invalidPassword.warning }} </div>  
+  <div id="user-container">
+    <div id="existing-user">
+      <h3>Existing User</h3>
+      <div class="form-group">
+        <label for="username">username address</label>
+        <input [(ngModel)]='existingUser.username' type="text" class="form-control" id="username" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input [(ngModel)]='existingUser.password' type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <button (click)='loginExisting()' type="submit" class="btn btn-primary">Sign In</button>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input [(ngModel)]='existingUser.password' type="password" class="form-control" id="password" placeholder="Password">
+    <div id="new-user">
+      <h3>New User</h3>
+      <div class="form-group">
+        <label for="username">username address</label>
+        <input [(ngModel)]='newUser.username' type="text" class="form-control" id="username" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+        <label for="newPassword1">Password</label>
+        <input [(ngModel)]='newUser.password1' type="password" class="form-control" id="newPassword1" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="newPassword2">Password</label>
+        <input [(ngModel)]='newUser.password2' type="password" class="form-control" id="newPassword2" placeholder="Re-Enter Password">
+      </div>
+      <button (click)='loginNew()' type="submit" class="btn btn-primary">Create Account</button>
     </div>
-    <button (click)='loginExisting()' type="submit" class="btn btn-primary">Sign In</button>
-  <!-- </form> -->
-  <hr>
-  <h3>New User</h3>
-  <!-- <form action='/newuser' method='POST'> -->
-    <div *ngIf="invalidName.toggle" id='warning'> {{ invalidName.warning }} </div>    
-    <div class="form-group">
-      <label for="username">username address</label>
-      <input [(ngModel)]='newUser.username' type="text" class="form-control" id="username" placeholder="Enter username">
-    </div>
-    <div *ngIf="invalidPassword.toggle" id='warning'> {{ invalidPassword.warning }} </div>
-    <div class="form-group">
-      <label for="newPassword1">Password</label>
-      <input [(ngModel)]='newUser.password1' type="password" class="form-control" id="newPassword1" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <label for="newPassword2">Password</label>
-      <input [(ngModel)]='newUser.password2' type="password" class="form-control" id="newPassword2" placeholder="Re-Enter Password">
-    </div>
-    <button (click)='loginNew()' type="submit" class="btn btn-primary">Create Account</button>
-  <!-- </form> -->
-  <hr>
-  <h3>Guest</h3>
-  <!-- <form action='/guest' method='POST'> -->
+  </div>
+  <div id="guest-container">
+    <h3>Guest</h3>
     <button (click)='loginGuest()' type="submit" class="btn btn-primary">Sign in as "Anonymous" user</button>
-  <!-- </form> -->
+  </div>
 </div>
