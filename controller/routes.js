@@ -12,7 +12,7 @@ router.get("/", function (req, res) {
 // Sends all existing threads to homepage for display
 router.get('/topics', function (req, res) {
   // var query = "SELECT * FROM topics ORDER BY id";
-  var query = "SELECT t.*, r.topic_id, r.thread_id, r.message, r.poster, r.time_posted FROM topics t LEFT JOIN replies r ON r.topic_id = t.id AND r.id = (SELECT MAX(r2.id) FROM replies r2 WHERE r.topic_id = r2.topic_id) ORDER BY id";
+  var query = "SELECT t.*, r.topic_id, r.thread_id, r.message, r.poster, r.time_posted, t1.title FROM topics t LEFT JOIN replies r ON r.topic_id = t.id AND r.id = (SELECT MAX(r2.id) FROM replies r2 WHERE r.topic_id = r2.topic_id) LEFT JOIN threads t1 ON t1.id = r.thread_id ORDER BY id";
   connection.query(query, function (err, data) {
     if (err) {
       console.log(err);
@@ -81,7 +81,13 @@ router.post('/newthread', function (req, res) {
 // Receives new reply from user and saves to database for any given thread
 router.post('/newreply', function (req, res) { 
   var reply = req.body;
-  var saveReply = 'INSERT INTO replies ( topic_id, thread_id, message, poster ) VALUES ( ' + reply.topicId + ', ' + reply.threadId + ', "' + reply.reply + '", "' + reply.user + '" )';
+  let message = '';
+  if (req.body.quotedUser != '') {
+    message = "<div class='quote'><div class='quote-poster'>Posted by " + reply.quotedUser + "</div><div class='quote-body'>" + reply.quotedPost + "</div></div><br/>" + reply.reply;
+  } else {
+    message = reply.reply;
+  }
+  var saveReply = 'INSERT INTO replies ( topic_id, thread_id, message, poster ) VALUES ( ' + reply.topicId + ', ' + reply.threadId + ', "' + message + '", "' + reply.user + '" )';
   connection.query(saveReply, function (err, data) {
     err ? console.log(err) : res.json('success');
   });

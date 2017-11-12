@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
     this.http.get('/topics').subscribe(data => {
       // Read the result field from the JSON response.
       this.results = JSON.parse(data['_body']);
+      console.log(this.results);
     });
   }
 

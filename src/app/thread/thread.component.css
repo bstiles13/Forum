@@ -93,3 +93,25 @@
     cursor: pointer;
 }
 
+.quote {
+    color: black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 0.1px solid gainsboro;
+    border-bottom: 0.1px solid gainsboro;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.quote-poster {
+    font-weight: bold;
+}
+
+.quote-body {
+    font-style: italic;
+    overflow: auto;
+}
+
+.option-button {
+    margin-bottom: 5px;
+}

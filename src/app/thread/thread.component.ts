@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-thread',
   templateUrl: './thread.component.html',
-  styleUrls: ['./thread.component.css']
+  styleUrls: ['./thread.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ThreadComponent implements OnInit {
 
@@ -18,8 +19,12 @@ export class ThreadComponent implements OnInit {
     user: '',
     reply: '',
     topicId: null,
-    threadId: null
+    threadId: null,
+    quotedUser: '',
+    quotedPost: ''
   }
+
+
 
   deleteReplyId: number;
 
@@ -27,6 +32,7 @@ export class ThreadComponent implements OnInit {
   
   ngOnInit() {
     this.newReply.user = localStorage.getItem('currentUser');
+    console.log(this.newReply.user);
     this.getThread();
     this.getTopic();    
     this.loggedIn();
@@ -52,9 +58,32 @@ export class ThreadComponent implements OnInit {
     });
   }
 
+  setQuote(poster, quote) {
+    this.clearQuotes();
+    let newQuote = '';
+    let quoteTest = quote.split("<br/>");
+    if (quoteTest.length > 1) {
+      newQuote = quoteTest[1];
+    } else {
+      newQuote = quoteTest[0];
+    }
+    this.newReply.quotedUser = poster;
+    this.newReply.quotedPost = newQuote;
+  }
+
   submitReply() {
     this.http.post('/newreply', this.newReply).subscribe( data => {
       this.getThread();
+      this.clearQuotes();      
+    });
+  }
+
+  submitQuickReply() {
+    this.newReply.quotedUser = '',
+    this.newReply.quotedPost = ''
+    this.http.post('/newreply', this.newReply).subscribe( data => {
+      this.getThread();
+      this.clearQuotes();      
     });
   }
 
@@ -66,6 +95,12 @@ export class ThreadComponent implements OnInit {
     this.http.post('/deletereply', {id: this.deleteReplyId}).subscribe( data => {
       this.getThread();
     })
+  }
+
+  clearQuotes() {
+    this.newReply.reply = ''
+    this.newReply.quotedUser = '',
+    this.newReply.quotedPost = ''
   }
 
   loggedIn() {
