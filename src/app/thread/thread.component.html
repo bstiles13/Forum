@@ -17,9 +17,9 @@
         <br> {{ result.time_posted.substring(0, 10) }}
       </div>
       <div class='reply-body'>
-        <span id="reply-title">{{ result.title }}</span>
+        <div id="reply-title">{{ result.title }}</div>
         <hr/>
-        <span [innerHTML]="result.message | sanitizeHtml"></span>
+        <div class="reply-message" [innerHTML]="result.message | sanitizeHtml"></div>
       </div>
       <div class="reply-options">
         <i class="fa fa-reply option-icon" aria-hidden="true" *ngIf="this.loggedIn()" data-toggle="modal" data-target="#exampleModal3"
@@ -35,7 +35,9 @@
         <br> {{ reply.poster }}
         <br> {{ (reply.time_posted).substring(0, 10) }}
       </div>
-      <div class='reply-body' [innerHTML]="reply.message | sanitizeHtml"></div>
+      <div class='reply-body'>
+          <span class="reply-message" [innerHTML]="reply.message | sanitizeHtml"></span>
+      </div>
       <div class="reply-options">
         <i class="fa fa-reply option-icon" aria-hidden="true" *ngIf="this.loggedIn()" data-toggle="modal" data-target="#exampleModal3"
           (click)="setQuote(reply.poster, reply.message)"></i>
