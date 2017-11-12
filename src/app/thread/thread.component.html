@@ -8,34 +8,42 @@
     <h6>Thread</h6>
 </div>
 <div id="thread">
-    <div *ngFor='let result of results' class="reply">
-      <div class="reply-header">Thread</div>
-      <div class="reply-container">
-        <div class='reply-signature'>
-          <img class='avatar' src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png'>
-          <br> {{ result.poster }}
-          <br> {{ result.time_posted.substring(0, 10) }}
-        </div>
-        <div class='reply-body'><span id="reply-title">{{ result.title }}</span><hr/><span [innerHTML]="result.message | sanitizeHtml"></span></div>
-        <div class="reply-options">
-          <i class="fa fa-reply option-icon" aria-hidden="true" *ngIf="this.loggedIn()" data-toggle="modal" data-target="#exampleModal3" (click)="setQuote(result.poster, result.message)"></i>            
-        </div>
-    </div>
-    <div *ngFor='let reply of replies' class="reply">
-      <div class="reply-header">Reply</div>        
-      <div class="reply-container">
-        <div class='reply-signature'>
-          <img class='avatar' src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png'>
-          <br> {{ reply.poster }}
-          <br> {{ (reply.time_posted).substring(0, 10) }}
-        </div>
-        <div class='reply-body' [innerHTML]="reply.message | sanitizeHtml"></div>
-        <div class="reply-options">
-          <i class="fa fa-reply option-icon" aria-hidden="true" *ngIf="this.loggedIn()" data-toggle="modal" data-target="#exampleModal3" (click)="setQuote(reply.poster, reply.message)"></i>            
-          <i class="fa fa-trash option-icon" aria-hidden="true" *ngIf="reply.poster == newReply.user && newReply.user != 'Anonymous'" data-toggle="modal" data-target="#exampleModal"(click)="stageDelete(reply.id)"></i>
-        </div>
+  <div *ngFor='let result of results' class="reply">
+    <div class="reply-header">Thread</div>
+    <div class="reply-container">
+      <div class='reply-signature'>
+        <img class='avatar' src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png'>
+        <br> {{ result.poster }}
+        <br> {{ result.time_posted.substring(0, 10) }}
+      </div>
+      <div class='reply-body'>
+        <span id="reply-title">{{ result.title }}</span>
+        <hr/>
+        <span [innerHTML]="result.message | sanitizeHtml"></span>
+      </div>
+      <div class="reply-options">
+        <i class="fa fa-reply option-icon" aria-hidden="true" *ngIf="this.loggedIn()" data-toggle="modal" data-target="#exampleModal3"
+          (click)="setQuote(result.poster, result.message)"></i>
       </div>
     </div>
+  </div>
+  <div *ngFor='let reply of replies' class="reply">
+    <div class="reply-header">Reply</div>
+    <div class="reply-container">
+      <div class='reply-signature'>
+        <img class='avatar' src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png'>
+        <br> {{ reply.poster }}
+        <br> {{ (reply.time_posted).substring(0, 10) }}
+      </div>
+      <div class='reply-body' [innerHTML]="reply.message | sanitizeHtml"></div>
+      <div class="reply-options">
+        <i class="fa fa-reply option-icon" aria-hidden="true" *ngIf="this.loggedIn()" data-toggle="modal" data-target="#exampleModal3"
+          (click)="setQuote(reply.poster, reply.message)"></i>
+        <i class="fa fa-trash option-icon" aria-hidden="true" *ngIf="reply.poster == newReply.user && newReply.user != 'Anonymous'"
+          data-toggle="modal" data-target="#exampleModal" (click)="stageDelete(reply.id)"></i>
+      </div>
+    </div>
+  </div>
   <br>
   <div id='new-reply-container'>
     <h5 class="warning" *ngIf="!loggedIn()">Sign in to leave a reply</h5>

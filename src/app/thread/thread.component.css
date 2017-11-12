@@ -24,6 +24,7 @@
 
 #signature {
     padding-left: 10px;
+    color: ivory;
 }
 
 .label {
@@ -70,7 +71,7 @@
     font-weight: bold;
 }
 
-.card-text, .reply-body {
+.card-text {
     white-space: pre-wrap;
 }
 
