@@ -72,7 +72,7 @@ router.get('/reply/:id', function (req, res) {
 // Receives new thread from user and saves to database
 router.post('/newthread', function (req, res) {
   var thread = req.body;
-  var saveThread = 'INSERT INTO threads ( topic_id, title, message, poster ) VALUES ( ' + thread.topic + ', "' + thread.title + '", "' + thread.message + '", "' + thread.user + '" )';
+  var saveThread = "INSERT INTO threads ( topic_id, title, message, poster ) VALUES ( " + thread.topic + ", '" + thread.title + "', '" + thread.message + "', '" + thread.user + "' )";
   connection.query(saveThread, function (err, data) {
     err ? console.log(err) : res.json(data);
   })
