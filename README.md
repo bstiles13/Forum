@@ -28,7 +28,7 @@ Sign In Page
 
 Once logged in you may create your own threads and reply to existing conversations
 
-Edit Favorites
+Create thread
 
 ![newthread](https://github.com/bstiles13/Forum/blob/master/src/assets/screenshots/screenshot_newthread.png)
 
