@@ -32,3 +32,11 @@ td > a {
     color: rgb(32, 192, 255);
     font-weight: bold;
 }
+
+.modal-title {
+    color: rgb(194, 1, 1);
+}
+
+.modal-body {
+    color: black;
+}

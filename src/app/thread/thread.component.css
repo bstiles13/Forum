@@ -118,3 +118,15 @@
     cursor: pointer;
     font-size: 30px;
 }
+
+#modal-quote {
+    color: rgb(32, 192, 255);    
+}
+
+#modal-delete {
+    color: rgb(194, 1, 1);
+}
+
+.modal-body {
+    color: black;
+}
